@@ -9,6 +9,12 @@ gem 'uglifier', '>= 2.7.1'
 
 gem 'jquery-rails'
 
+gem 'execjs'
+# gem 'therubyracer', :platforms => :ruby
+
+
+
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -16,6 +22,7 @@ end
 
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do
+
   gem 'byebug'
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
