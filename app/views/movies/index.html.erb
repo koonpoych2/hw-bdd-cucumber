@@ -51,4 +51,14 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Add new movie', new_movie_path, class: 'btn btn-primary' %>
+<div class="d-flex justify-content-between align-items-center">
+  <%= link_to 'Add new movie', new_movie_path, class: 'btn btn-primary' %>
+  
+  <%= form_tag new_movie_path, class: 'form-inline' do %>
+    <div class="form-group mx-sm-3">
+      <%= label_tag(:q, "Search TMDb for a movie:") %>
+      <%= text_field_tag(:q, nil, class: 'form-control', placeholder: 'Search') %>
+    </div>
+    <%= submit_tag("Search", class: 'btn btn-primary') %>
+  <% end %>
+</div>
