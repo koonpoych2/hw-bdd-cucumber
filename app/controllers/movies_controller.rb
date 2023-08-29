@@ -21,6 +21,9 @@ class MoviesController < ApplicationController
     # default: render 'new' template
   end
 
+  def search_tmdb
+    byebug
+  end
 
 
   def create
@@ -69,7 +72,5 @@ class MoviesController < ApplicationController
     params[:sort_by] || session[:sort_by] || 'id'
   end
 
-  # def movie_params
-  #   params.require(:movie).permit(:title, :director, :release_date, :other_attributes)
-  # end
+
 end
