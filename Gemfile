@@ -12,7 +12,8 @@ gem 'jquery-rails'
 gem 'execjs'
 # gem 'therubyracer', :platforms => :ruby
 
-
+# The movie db
+gem 'themoviedb'
 
 
 group :development do

@@ -1,4 +1,5 @@
 # Add a declarative step here for populating the DB with movies.
+Tmdb::Api.key("e77aa7dc63d5ffbae94561b5de387e81")
 
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
