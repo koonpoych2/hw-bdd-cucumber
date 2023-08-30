@@ -14,6 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
+    when "the Search Results page" then search_tmdb_path
     when /^the movies page$/ then '/movies'
 
     # Add more mappings here.

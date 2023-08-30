@@ -22,11 +22,10 @@ class MoviesController < ApplicationController
   end
 
   def search_tmdb
-    movies_tmdb = ['test']
+    movies_tmdb = ['Inception']
     @t = movies_tmdb.include?(params[:title])
     if @t
-      #Happy path
-      redirect_to happy_path
+      flash[:title] = "#{params[:title]}"
     else
       #Sad path
       flash[:error] = "'Movie That Does Not Exist' was not found in TMDb."
