@@ -23,9 +23,11 @@ class MoviesController < ApplicationController
 
   def search_tmdb
     movies_tmdb = ['Inception']
-    @t = movies_tmdb.include?(params[:title])
-    if @t
+    if movies_tmdb.include?(params[:title])
       flash[:title] = "#{params[:title]}"
+      flash[:rating] = "PG-13"
+      flash[:release_date] = Date.new(2010, 8, 15)
+      flash[:description] = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster."
     else
       #Sad path
       flash[:error] = "'Movie That Does Not Exist' was not found in TMDb."
@@ -80,5 +82,8 @@ class MoviesController < ApplicationController
     params[:sort_by] || session[:sort_by] || 'id'
   end
 
+  def movie_params
+    params.require(:movie).permit(:title, :rating, :description, :release_date)
+  end
 
 end
