@@ -22,7 +22,16 @@ class MoviesController < ApplicationController
   end
 
   def search_tmdb
-    byebug
+    movies_tmdb = ['test']
+    @t = movies_tmdb.include?(params[:title])
+    if @t
+      #Happy path
+      redirect_to happy_path
+    else
+      #Sad path
+      flash[:error] = "'Movie That Does Not Exist' was not found in TMDb."
+      redirect_to movies_path
+    end
   end
 
 

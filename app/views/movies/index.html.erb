@@ -2,6 +2,11 @@
 <h2>All Movies</h2>
 
 <%#  Part 2: Start here... %>
+<% if flash[:error] %>
+  <div class="flash-error">
+   <h5> <%= flash[:error] %></h5>
+  </div>
+<% end %>
 
 <%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
   <%= hidden_field_tag 'sort_by', @sort_by %>
@@ -57,7 +62,7 @@
   <%= form_tag search_tmdb_path, class: 'form-inline' do %>
     <div class="form-group mx-sm-3">
       <%= label_tag(:q, "Search TMDb for a movie:") %>
-      <%= text_field_tag(:q, nil, class: 'form-control', placeholder: 'Search Terms') %>
+      <%= text_field_tag(:title, nil, class: 'form-control', placeholder: 'Search Terms') %>
     </div>
     <%= submit_tag("Search TMDb", class: 'btn btn-primary') %>
   <% end %>

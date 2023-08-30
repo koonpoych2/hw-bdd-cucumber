@@ -176,9 +176,16 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
+
   current_path = URI.parse(current_url).path
-  assert_equal path_to(page_name), current_path
+  # puts "DEBUG: Current URL: #{current_path}"
+  # puts "DEBUG: Current URL: #{page_name}"
+  # puts "DEBUG: Current URL: #{path_to(page_name)}"
+  # assert_equal path_to(page_name), current_path
+  (path_to(page_name) == current_path).should == true
+  
 end
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
