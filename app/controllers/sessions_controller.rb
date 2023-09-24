@@ -1,10 +1,38 @@
 class SessionsController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: :create
+    
     def new
       render :new
     end
   
     def create
       user_info = request.env['omniauth.auth']
-      raise user_info # Your own session management should be placed here.
+    
+      @user = User.find_by(twitter_id: user_info.uid)
+      if @user.nil?
+        @user = User.create!(
+            twitter_id: user_info.uid,
+            nickname: user_info.info.nickname,
+            name: user_info.info.name,
+            token: user_info.credentials.token,
+            image: user_info.info.image,
+            expires_at: Time.at(user_info.credentials.expires_at).to_datetime,
+        )
+      else
+        @user.update(
+            token: user_info.credentials.token,
+            expires_at: Time.at(user_info.credentials.expires_at).to_datetime,
+        )
+      end
+
+    #Cookie the user and store their session
+    session[:user_id] = @user.id
+    # render json: user_info
+    redirect_to movies_path
     end
+
+    def destroy
+        reset_session
+        redirect_to root_path, notice: 'Logged out successfully'
+      end
   end

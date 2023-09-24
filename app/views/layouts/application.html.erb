@@ -10,9 +10,35 @@
   </head>
   <body>
     <%# These classes come from the Bootstrap CSS framework. %>
-    <nav class="navbar navbar-expand-lg bg-primary text-white mb-3">
-      <h1 class="title">Rotten Potatoes!</h1>
-    </nav>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Rotten Potatoes!</a>
+    
+    <!-- Conditional Display of Login or User Information -->
+    <% if @current_user %>
+      <!-- User Information -->
+      <div class="user-info">
+        <%= image_tag(@current_user.image, alt: @current_user.nickname, class: 'user-avatar') %>
+         <%= link_to "Logout", logout_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+       <!-- Logout Button -->
+  </div>
+    <% else %>
+      <!-- Login with Twitter Button -->
+      <%= form_tag('/auth/twitter2', method: 'post', data: { turbo: false }, class: 'form-inline ml-auto') do %>
+        <button type='submit' class="btn btn-light">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+            <path d="M5.585 15c6.702 0 10.365-5.539 10.365-10.365 0-.158 0-.316-.01-.474A7.418 7.418 0 0 0 16 3.536a7.514 7.514 0 0 1-2.148.602 3.71 3.71 0 0 0 1.634-2.04 7.47 7.47 0 0 1-2.363.905 3.725 3.725 0 0 0-6.328 3.392A10.58 10.58 0 0 1 1 2.018a3.724 3.724 0 0 0 1.15 4.97A3.68 3.68 0 0 1 1 6.523c0 1.33.678 2.51 1.713 3.204a3.742 3.742 0 0 0-1.68-.476c-.413 0-.804.048-1.142.134a3.72 3.72 0 0 0 3.471 2.587 7.45 7.45 0 0 1-5.482 1.535 10.54 10.54 0 0 0 5.697 1.662"></path>
+          </svg>
+          Login with Twitter
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
+
+
+
     <div class="container">
       <%# Render "flash" messages in our application. This loads _flash.erb %>
       <%= render 'layouts/flash' %>

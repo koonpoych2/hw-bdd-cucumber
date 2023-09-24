@@ -14,6 +14,8 @@ gem 'execjs'
 
 # The movie db
 gem 'themoviedb'
+
+gem 'omniauth-twitter2'
 gem 'omniauth'
 gem "omniauth-rails_csrf_protection"
 
