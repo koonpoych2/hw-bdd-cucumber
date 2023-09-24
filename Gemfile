@@ -14,6 +14,8 @@ gem 'execjs'
 
 # The movie db
 gem 'themoviedb'
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
 
 
 group :development do
@@ -33,6 +35,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'capybara'
   gem 'launchy'
+
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
